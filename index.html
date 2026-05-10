@@ -1,13 +1,25 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>EVENT ID HELL — INSANE SOC BE SAFE EDITION</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
 
 <style>
+
+:root{
+--bg:#05080d;
+--card:#0f1722;
+--line:#1f2d3d;
+--green:#00ffae;
+--red:#ff4d7a;
+--yellow:#ffd75c;
+--blue:#61d8ff;
+--text:#dfe8f3;
+--muted:#90a5bc;
+}
 
 *{
 margin:0;
@@ -15,22 +27,14 @@ padding:0;
 box-sizing:border-box;
 }
 
-:root{
---bg:#060b10;
---card:#101823;
---line:#1d2b3a;
---green:#00ffae;
---red:#ff4f7a;
---yellow:#ffd75e;
---blue:#53d4ff;
---text:#dce7f4;
---muted:#8ea2bb;
+html{
+scroll-behavior:smooth;
 }
 
 body{
 background:var(--bg);
-font-family:'Inter',sans-serif;
 color:var(--text);
+font-family:'Inter',sans-serif;
 overflow-x:hidden;
 }
 
@@ -39,111 +43,170 @@ content:'';
 position:fixed;
 inset:0;
 background:
-radial-gradient(circle at top left,rgba(0,255,174,.10),transparent 30%),
+radial-gradient(circle at top left,rgba(0,255,174,.12),transparent 28%),
 radial-gradient(circle at bottom right,rgba(255,0,90,.08),transparent 30%);
 pointer-events:none;
 z-index:-1;
 }
 
-header{
-padding:35px;
-border-bottom:1px solid rgba(255,255,255,.06);
-background:rgba(5,10,16,.92);
-backdrop-filter:blur(14px);
+::-webkit-scrollbar{
+width:10px;
+height:10px;
+}
+
+::-webkit-scrollbar-thumb{
+background:#1f3248;
+border-radius:20px;
+}
+
+.topbar{
 position:sticky;
 top:0;
 z-index:999;
+backdrop-filter:blur(14px);
+background:rgba(5,8,13,.92);
+border-bottom:1px solid rgba(255,255,255,.05);
+padding:18px;
 }
 
-h1{
-font-size:54px;
+.logo{
+font-size:clamp(22px,4vw,52px);
 font-weight:900;
 letter-spacing:2px;
+line-height:1.1;
 color:var(--green);
-text-shadow:0 0 20px rgba(0,255,174,.4);
+text-shadow:0 0 18px rgba(0,255,174,.4);
 }
 
 .sub{
 margin-top:12px;
-max-width:1200px;
-line-height:1.8;
-font-size:15px;
-color:var(--muted);
-}
-
-.warning{
-margin-top:20px;
-padding:20px;
-border-radius:20px;
-background:linear-gradient(90deg,rgba(0,255,174,.09),rgba(83,212,255,.04));
-border:1px solid rgba(0,255,174,.16);
-line-height:1.8;
 font-size:14px;
+line-height:1.8;
+color:var(--muted);
+max-width:1300px;
 }
 
-.topbar{
-display:flex;
+.alert-banner{
+margin-top:18px;
+padding:18px;
+border-radius:22px;
+background:linear-gradient(90deg,rgba(0,255,174,.10),rgba(97,216,255,.04));
+border:1px solid rgba(0,255,174,.16);
+font-size:14px;
+line-height:1.8;
+}
+
+.controls{
+display:grid;
+grid-template-columns:1fr 220px;
 gap:15px;
-flex-wrap:wrap;
-margin-top:25px;
+margin-top:20px;
 }
 
 input,select{
-background:#0f1722;
-border:1px solid rgba(255,255,255,.08);
+width:100%;
 padding:16px;
-border-radius:14px;
+border-radius:16px;
+border:1px solid rgba(255,255,255,.07);
+background:#101823;
 color:#fff;
-font-size:14px;
 outline:none;
+font-size:14px;
 }
 
-input{
-flex:1;
-min-width:280px;
+input:focus,
+select:focus{
+border-color:var(--green);
+box-shadow:0 0 16px rgba(0,255,174,.15);
 }
 
-main{
-padding:35px;
+.layout{
+display:grid;
+grid-template-columns:280px 1fr;
+gap:25px;
+padding:25px;
+}
+
+.sidebar{
+position:sticky;
+top:140px;
+height:max-content;
+background:linear-gradient(180deg,#101923,#0c121a);
+border:1px solid rgba(255,255,255,.05);
+border-radius:26px;
+padding:24px;
+}
+
+.side-title{
+font-size:15px;
+font-weight:900;
+letter-spacing:1px;
+margin-bottom:20px;
+color:var(--green);
+}
+
+.nav{
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.nav button{
+padding:14px;
+border:none;
+border-radius:14px;
+background:#0b1119;
+color:#cfe0ef;
+cursor:pointer;
+font-weight:700;
+transition:.2s;
+text-align:left;
+}
+
+.nav button:hover{
+background:rgba(0,255,174,.12);
+color:#fff;
+transform:translateX(4px);
 }
 
 .stats{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-margin-bottom:35px;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:18px;
+margin-bottom:25px;
 }
 
 .stat{
-background:linear-gradient(180deg,#121b27,#0d141d);
+background:linear-gradient(180deg,#111a25,#0c131c);
 border:1px solid rgba(255,255,255,.05);
-padding:25px;
+padding:22px;
 border-radius:24px;
 }
 
 .stat-number{
-font-size:42px;
+font-size:40px;
 font-weight:900;
 color:var(--green);
 }
 
 .stat-label{
 margin-top:10px;
+line-height:1.7;
+font-size:13px;
 color:var(--muted);
-line-height:1.5;
 }
 
 .grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(380px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+gap:22px;
 }
 
 .card{
-background:linear-gradient(180deg,#121b26,#0d131c);
-border-radius:24px;
-padding:28px;
+background:linear-gradient(180deg,#111a26,#0c131c);
 border:1px solid rgba(255,255,255,.05);
+border-radius:28px;
+padding:24px;
 transition:.3s;
 position:relative;
 overflow:hidden;
@@ -152,22 +215,22 @@ overflow:hidden;
 .card:hover{
 transform:translateY(-5px);
 border-color:rgba(0,255,174,.4);
-box-shadow:0 0 25px rgba(0,255,174,.15);
+box-shadow:0 0 25px rgba(0,255,174,.12);
 }
 
 .card::after{
 content:'';
 position:absolute;
-top:-50px;
-right:-50px;
-width:120px;
-height:120px;
-background:radial-gradient(circle,rgba(0,255,174,.09),transparent 70%);
+top:-60px;
+right:-60px;
+width:140px;
+height:140px;
+background:radial-gradient(circle,rgba(0,255,174,.08),transparent 70%);
 }
 
 .event{
 font-family:'Share Tech Mono',monospace;
-font-size:44px;
+font-size:48px;
 font-weight:bold;
 color:var(--green);
 }
@@ -178,36 +241,36 @@ margin-top:10px;
 padding:7px 14px;
 border-radius:999px;
 font-size:11px;
-font-weight:800;
+font-weight:900;
 letter-spacing:1px;
 }
 
 .critical{
-background:rgba(255,79,122,.16);
-color:#ff5d86;
+background:rgba(255,77,122,.15);
+color:#ff5b86;
 }
 
 .medium{
-background:rgba(255,215,94,.14);
-color:#ffd75e;
+background:rgba(255,215,92,.15);
+color:#ffd75c;
 }
 
 .low{
-background:rgba(83,212,255,.14);
-color:#79ddff;
+background:rgba(97,216,255,.14);
+color:#77deff;
 }
 
 .title{
 margin-top:18px;
-font-size:24px;
-font-weight:800;
+font-size:22px;
+font-weight:900;
 }
 
 .desc{
-margin-top:15px;
-font-size:14px;
+margin-top:14px;
 line-height:1.8;
-color:#afc0d3;
+font-size:14px;
+color:#adc0d2;
 }
 
 .section{
@@ -215,188 +278,262 @@ margin-top:20px;
 }
 
 .section h3{
-font-size:13px;
+font-size:12px;
 letter-spacing:1px;
-color:var(--green);
 margin-bottom:10px;
 text-transform:uppercase;
+color:var(--green);
 }
 
 .code{
-background:#09111a;
+background:#081018;
+border-radius:16px;
 padding:14px;
-border-radius:14px;
 font-family:'Share Tech Mono',monospace;
 font-size:12px;
+line-height:1.8;
 overflow:auto;
-line-height:1.7;
 border:1px solid rgba(255,255,255,.04);
 }
 
 .joke{
 margin-top:18px;
 padding:15px;
+background:rgba(255,77,122,.08);
 border-left:4px solid var(--red);
-background:rgba(255,79,122,.07);
-border-radius:12px;
-line-height:1.7;
+border-radius:14px;
+line-height:1.8;
 font-size:14px;
-color:#ffd6e0;
+color:#ffdbe5;
 }
 
-.matrix{
-margin-top:50px;
-padding:35px;
-background:#0f1721;
+.timeline{
+margin-top:30px;
+background:#0f1722;
 border-radius:28px;
+padding:28px;
 border:1px solid rgba(255,255,255,.05);
+overflow:auto;
 }
 
-.matrix h2{
-font-size:38px;
+.timeline h2{
+font-size:32px;
 color:var(--green);
 margin-bottom:25px;
 }
 
-.table-wrap{
-overflow:auto;
+.chain{
+display:flex;
+gap:14px;
+min-width:max-content;
 }
 
-table{
-width:100%;
-min-width:1000px;
-border-collapse:collapse;
-}
-
-th,td{
+.node{
+min-width:220px;
+background:#0a1017;
 padding:18px;
-border-bottom:1px solid rgba(255,255,255,.05);
-text-align:left;
-font-size:14px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,.05);
+position:relative;
 }
 
-th{
-background:#0b1119;
+.node::after{
+content:'➜';
+position:absolute;
+right:-12px;
+top:50%;
+transform:translateY(-50%);
+font-size:24px;
 color:var(--green);
 }
 
-tr:hover{
-background:rgba(255,255,255,.03);
+.node:last-child::after{
+display:none;
 }
 
-.red{
-color:var(--red);
-font-weight:800;
-}
-
-.yellow{
-color:var(--yellow);
-font-weight:800;
-}
-
-.green{
+.node-id{
+font-family:'Share Tech Mono',monospace;
+font-size:30px;
+font-weight:bold;
 color:var(--green);
+}
+
+.node-title{
+margin-top:10px;
 font-weight:800;
 }
 
-.console{
-margin-top:50px;
-background:#05090e;
-border-radius:24px;
-padding:30px;
-border:1px solid rgba(0,255,174,.15);
+.node-desc{
+margin-top:10px;
+font-size:13px;
+line-height:1.7;
+color:#9db1c7;
 }
 
-.console-title{
+.siem{
+margin-top:35px;
+background:#050a10;
+border-radius:28px;
+padding:28px;
+border:1px solid rgba(0,255,174,.14);
+}
+
+.siem-title{
 font-size:30px;
 color:var(--green);
-margin-bottom:20px;
+margin-bottom:22px;
 }
 
 .log{
 font-family:'Share Tech Mono',monospace;
-background:#02060a;
 padding:15px;
-border-radius:14px;
+border-radius:16px;
+background:#081019;
 margin-bottom:12px;
-font-size:13px;
 line-height:1.8;
+font-size:12px;
 border:1px solid rgba(255,255,255,.04);
+animation:pulse 3s infinite;
+}
+
+@keyframes pulse{
+0%{border-color:rgba(255,255,255,.04)}
+50%{border-color:rgba(0,255,174,.25)}
+100%{border-color:rgba(255,255,255,.04)}
 }
 
 .footer{
-padding:50px;
+padding:50px 20px;
 text-align:center;
 font-size:13px;
-line-height:1.8;
-color:#7890a9;
+line-height:1.9;
+color:#7d93aa;
 }
 
-.glitch{
-animation:glitch 2s infinite;
-display:inline-block;
+.brand{
+font-size:16px;
+font-weight:900;
+letter-spacing:2px;
+color:var(--green);
+margin-bottom:16px;
+text-transform:uppercase;
 }
 
-@keyframes glitch{
-0%{transform:translate(0)}
-20%{transform:translate(-1px,1px)}
-40%{transform:translate(1px,-1px)}
-60%{transform:translate(-1px,0)}
-80%{transform:translate(1px,1px)}
-100%{transform:translate(0)}
+.credit{
+margin-top:25px;
+padding-top:20px;
+border-top:1px solid rgba(255,255,255,.08);
+font-size:13px;
+letter-spacing:1px;
+color:#7f95ab;
+}
+
+.mobile-menu{
+display:none;
+margin-top:15px;
+}
+
+.mobile-menu button{
+width:100%;
+padding:14px;
+border:none;
+border-radius:16px;
+background:#101823;
+color:#fff;
+font-weight:800;
+}
+
+@media(max-width:1100px){
+
+.layout{
+grid-template-columns:1fr;
+}
+
+.sidebar{
+display:none;
+}
+
+.mobile-menu{
+display:block;
+}
+
 }
 
 @media(max-width:700px){
 
-h1{
-font-size:34px;
+.controls{
+grid-template-columns:1fr;
+}
+
+.layout{
+padding:15px;
+}
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.card{
+padding:20px;
 }
 
 .event{
-font-size:34px;
+font-size:38px;
+}
+
+.timeline{
+padding:18px;
+}
+
+.chain{
+flex-direction:column;
+}
+
+.node::after{
+display:none;
+}
+
+.topbar{
+padding:15px;
+}
+
+.alert-banner{
+font-size:13px;
 }
 
 }
 
 </style>
 </head>
+
 <body>
-
-<header>
-
-<h1 class="glitch">EVENT ID HELL — INSANE SOC BE SAFE EDITION</h1>
-
-<div class="sub">
-Enciclopédia ofensiva/defensiva de Event IDs Windows...
-correlação...
-DFIR...
-MITRE ATT&CK...
-PowerShell...
-Kerberos...
-Sysmon...
-ransomware...
-e o caos psicológico de trabalhar num SOC onde todo alerta vira “falso positivo” até o servidor criptografar.
-</div>
-
-<div class="warning">
-Este projeto contém Event IDs reais usados em:
-Windows Security Audit...
-Sysmon...
-PowerShell Logging...
-Kerberos...
-Persistência...
-Lateral Movement...
-Credential Access...
-RDP...
-WMI...
-PsExec...
-Ransomware...
-e aquele administrador que ainda expõe RDP na internet porque “o firewall bloqueia”.
-</div>
 
 <div class="topbar">
 
-<input type="text" id="search" placeholder="Pesquisar 4624, Kerberos, PowerShell, ransomware, LSASS...">
+<div class="logo">
+EVENT ID HELL — INSANE SOC BE SAFE EDITION
+</div>
+
+<div class="sub">
+SOC mobile-first...
+timeline ofensiva...
+MITRE...
+PowerShell...
+Kerberos...
+ransomware...
+e o sofrimento psicológico de analisar 74 mil logs para descobrir que o problema era “senha123”.
+</div>
+
+<div class="alert-banner">
+Toda empresa acha que monitora Event IDs...
+até descobrir que ninguém ativou auditoria...
+o SIEM não indexa metade...
+e o dashboard foi feito por alguém que chama ransomware de “vírus hacker”.
+</div>
+
+<div class="controls">
+
+<input type="text" id="search" placeholder="Pesquisar Event ID, Kerberos, ransomware, PowerShell..." />
 
 <select id="severity">
 <option value="all">Todos níveis</option>
@@ -407,44 +544,68 @@ e aquele administrador que ainda expõe RDP na internet porque “o firewall blo
 
 </div>
 
-</header>
+</div>
 
-<main>
+<div class="layout">
+
+<div class="sidebar">
+
+<div class="side-title">
+CORRELAÇÃO SOC
+</div>
+
+<div class="nav">
+
+<button onclick="scrollToSection('cards')">
+Event IDs
+</button>
+
+<button onclick="scrollToSection('timeline')">
+Attack Chains
+</button>
+
+<button onclick="scrollToSection('siem')">
+Mini SIEM
+</button>
+
+<button onclick="window.scrollTo({top:0,behavior:'smooth'})">
+Voltar ao topo
+</button>
+
+</div>
+
+</div>
+
+<div>
 
 <div class="stats">
 
 <div class="stat">
 <div class="stat-number">150+</div>
 <div class="stat-label">
-Event IDs correlacionados...
-porque o Windows produz logs como se estivesse imprimindo desespero operacional.
+Event IDs correlacionados.
+O Windows gera logs como se estivesse em crise emocional.
 </div>
 </div>
 
 <div class="stat">
 <div class="stat-number">38</div>
 <div class="stat-label">
-Cadeias de ataque mapeadas...
-incluindo Kerberoasting...
-PsExec...
-Golden Ticket...
-e ransomware gourmet corporativo.
+Cadeias ofensivas mapeadas.
 </div>
 </div>
 
 <div class="stat">
 <div class="stat-number">MITRE</div>
 <div class="stat-label">
-Mapeamento ATT&CK real...
-sem papo de “IA detecta tudo”.
+Técnicas ATT&CK reais.
 </div>
 </div>
 
 <div class="stat">
 <div class="stat-number">SOC</div>
 <div class="stat-label">
-Humor ácido incluso...
-porque sem isso ninguém sobrevive a SIEM.
+Humor ácido integrado.
 </div>
 </div>
 
@@ -452,49 +613,34 @@ porque sem isso ninguém sobrevive a SIEM.
 
 <div class="grid" id="cards">
 
-<!-- CARD -->
-
 <div class="card" data-level="critical">
 
 <div class="event">4624</div>
 <div class="badge low">SUCCESSFUL LOGON</div>
 
 <div class="title">
-Autenticação bem-sucedida
+Login bem-sucedido
 </div>
 
 <div class="desc">
-Login válido no Windows.
-O evento mais normal do mundo...
-até aparecer vindo de outro país usando conta de financeiro às 03:11.
+Autenticação válida...
+até aparecer vindo de outro continente usando conta do financeiro às 03h12.
 </div>
 
 <div class="section">
-<h3>MITRE ATT&CK</h3>
+<h3>MITRE</h3>
 <div class="code">
 T1078 — Valid Accounts
-T1021 — Remote Services
 </div>
 </div>
 
 <div class="section">
 <h3>Correlação</h3>
 <div class="code">
-4624 → 4672 → 4688 → 7045
-
-Login
-→ privilégio administrativo
-→ execução suspeita
-→ persistência
-</div>
-</div>
-
-<div class="section">
-<h3>KQL</h3>
-<div class="code">
-SecurityEvent
-| where EventID == 4624
-| where LogonType == 10
+4624
+→ 4672
+→ 4688
+→ 7045
 </div>
 </div>
 
@@ -506,59 +652,10 @@ Empresa@123
 
 </div>
 
-<!-- CARD -->
-
-<div class="card" data-level="critical">
-
-<div class="event">4625</div>
-<div class="badge critical">FAILED LOGON</div>
-
-<div class="title">
-Falha de autenticação
-</div>
-
-<div class="desc">
-Bruteforce...
-password spraying...
-ou só alguém digitando a senha errada pela décima vez.
-As três situações geram exatamente o mesmo inferno operacional.
-</div>
-
-<div class="section">
-<h3>Correlação</h3>
-<div class="code">
-4625 repeated
-→ 4771
-→ 4624
-=
-Possível invasão bem-sucedida
-</div>
-</div>
-
-<div class="section">
-<h3>Sigma</h3>
-<div class="code">
-selection:
- EventID: 4625
- Status: '0xC000006A'
-condition: selection
-</div>
-</div>
-
-<div class="joke">
-SOC moderno:
-80% do tempo investigando usuário esquecendo senha.
-20% tentando impedir ransomware.
-</div>
-
-</div>
-
-<!-- CARD -->
-
 <div class="card" data-level="critical">
 
 <div class="event">4688</div>
-<div class="badge medium">PROCESS CREATION</div>
+<div class="badge medium">PROCESS CREATE</div>
 
 <div class="title">
 Criação de processo
@@ -566,11 +663,10 @@ Criação de processo
 
 <div class="desc">
 Aqui nasce o caos.
-cmd.exe...
-powershell.exe...
-rundll32...
+powershell...
+cmd...
 mshta...
-wscript...
+rundll32...
 a família tradicional brasileira do malware.
 </div>
 
@@ -579,18 +675,7 @@ a família tradicional brasileira do malware.
 <div class="code">
 powershell -enc
 mshta http://
-rundll32 javascript:
 certutil -urlcache
-</div>
-</div>
-
-<div class="section">
-<h3>Correlação</h3>
-<div class="code">
-4688
-→ 4104
-→ AMSI bypass
-→ beacon
 </div>
 </div>
 
@@ -602,124 +687,32 @@ igual alicate também é.
 
 </div>
 
-<!-- CARD -->
-
-<div class="card" data-level="critical">
-
-<div class="event">4104</div>
-<div class="badge critical">POWERSHELL</div>
-
-<div class="title">
-Script Block Logging
-</div>
-
-<div class="desc">
-O evento que separa SOC sério...
-de empresa que acha que antivírus resolve tudo.
-</div>
-
-<div class="section">
-<h3>Indicadores</h3>
-<div class="code">
-IEX
-DownloadString
-Invoke-Mimikatz
-FromBase64String
-</div>
-</div>
-
-<div class="section">
-<h3>MITRE</h3>
-<div class="code">
-T1059.001 — PowerShell
-</div>
-</div>
-
-<div class="joke">
-Toda empresa acha que monitora PowerShell...
-até descobrir que ninguém habilitou logging.
-</div>
-
-</div>
-
-<!-- CARD -->
-
-<div class="card" data-level="critical">
-
-<div class="event">7045</div>
-<div class="badge critical">SERVICE INSTALL</div>
-
-<div class="title">
-Novo serviço instalado
-</div>
-
-<div class="desc">
-Persistência clássica.
-Principalmente quando aparece:
-Windows Security Telemetry Host Service Update Premium Ultimate.
-</div>
-
-<div class="section">
-<h3>Correlação</h3>
-<div class="code">
-4672
-→ 7045
-→ serviço estranho
-→ ransomware prep
-</div>
-</div>
-
-<div class="section">
-<h3>Validar</h3>
-<div class="code">
-BinPath suspeito?
-Executável assinado?
-C:\Users\Public\ ?
-</div>
-</div>
-
-<div class="joke">
-Se o binário estiver em TEMP...
-acabou a paz.
-</div>
-
-</div>
-
-<!-- CARD -->
-
 <div class="card" data-level="critical">
 
 <div class="event">4769</div>
 <div class="badge critical">KERBEROS</div>
 
 <div class="title">
-Kerberos Service Ticket
+Kerberos Ticket Request
 </div>
 
 <div class="desc">
 Evento favorito do Kerberoasting.
-Principalmente quando alguém resolve pedir 900 tickets em 30 segundos.
-Totalmente saudável.
-</div>
-
-<div class="section">
-<h3>MITRE</h3>
-<div class="code">
-T1558.003 — Kerberoasting
-</div>
+Principalmente quando alguém resolve pedir 900 tickets em 20 segundos.
+Super saudável.
 </div>
 
 <div class="section">
 <h3>Indicadores</h3>
 <div class="code">
-RC4 Encryption
+RC4
 Burst requests
-SPN enumeration
+SPN abuse
 </div>
 </div>
 
 <div class="joke">
-Conta de serviço criada em 2014...
+Conta de serviço criada em 2015...
 senha nunca trocada...
 e ainda Domain Admin.
 Cinema absoluto.
@@ -727,29 +720,18 @@ Cinema absoluto.
 
 </div>
 
-<!-- CARD -->
-
 <div class="card" data-level="critical">
 
 <div class="event">1102</div>
 <div class="badge critical">LOG CLEAR</div>
 
 <div class="title">
-Audit Log Cleared
+Security Log Cleared
 </div>
 
 <div class="desc">
-O invasor terminou o serviço...
+O atacante terminou o trabalho...
 e agora virou faxineiro.
-</div>
-
-<div class="section">
-<h3>Correlação</h3>
-<div class="code">
-4688
-→ wevtutil cl
-→ 1102
-</div>
 </div>
 
 <div class="section">
@@ -769,126 +751,88 @@ E o ransomware também foi espontâneo.
 
 </div>
 
-<!-- MATRIX -->
-
-<div class="matrix">
+<div class="timeline" id="timeline">
 
 <h2>CADEIAS DE ATAQUE</h2>
 
-<div class="table-wrap">
+<div class="chain">
 
-<table>
+<div class="node">
+<div class="node-id">4625</div>
+<div class="node-title">
+Falhas repetidas
+</div>
+<div class="node-desc">
+Password spraying...
+bruteforce...
+ou RH esquecendo senha pela oitava vez.
+</div>
+</div>
 
-<thead>
-<tr>
-<th>Sequência</th>
-<th>Ataque</th>
-<th>MITRE</th>
-<th>Nível</th>
-<th>Contexto</th>
-<th>Realidade Corporativa</th>
-</tr>
-</thead>
+<div class="node">
+<div class="node-id">4624</div>
+<div class="node-title">
+Login válido
+</div>
+<div class="node-desc">
+Agora o atacante entrou...
+e a paz acabou.
+</div>
+</div>
 
-<tbody>
+<div class="node">
+<div class="node-id">4672</div>
+<div class="node-title">
+Privilégios elevados
+</div>
+<div class="node-desc">
+Domain Admin detected...
+excelente ideia.
+</div>
+</div>
 
-<tr>
-<td>4625 → 4624</td>
-<td>Password Spraying</td>
-<td>T1110</td>
-<td class="red">Crítico</td>
-<td>Múltiplas falhas seguidas de sucesso</td>
-<td>“Foi só o RH errando senha.”</td>
-</tr>
+<div class="node">
+<div class="node-id">4688</div>
+<div class="node-title">
+Execução ofensiva
+</div>
+<div class="node-desc">
+powershell...
+rundll32...
+cmd...
+desespero.
+</div>
+</div>
 
-<tr>
-<td>4624 → 4672 → 4688</td>
-<td>Privilege Escalation</td>
-<td>T1068</td>
-<td class="red">Crítico</td>
-<td>Admin executando shell</td>
-<td>Administrador às 04h17... claro.</td>
-</tr>
-
-<tr>
-<td>4688 → 4104</td>
-<td>PowerShell Abuse</td>
-<td>T1059</td>
-<td class="red">Crítico</td>
-<td>Execução codificada</td>
-<td>“PowerShell é automação.”</td>
-</tr>
-
-<tr>
-<td>4769</td>
-<td>Kerberoasting</td>
-<td>T1558</td>
-<td class="red">Crítico</td>
-<td>Tickets suspeitos</td>
-<td>Senha da service account: Winter2019</td>
-</tr>
-
-<tr>
-<td>7045</td>
-<td>Persistence</td>
-<td>T1543</td>
-<td class="red">Crítico</td>
-<td>Serviço criado</td>
-<td>“Windows Update Helper Ultimate”</td>
-</tr>
-
-<tr>
-<td>1102</td>
-<td>Log Cleaning</td>
-<td>T1070</td>
-<td class="red">Crítico</td>
-<td>Eventos apagados</td>
-<td>O invasor virou diarista.</td>
-</tr>
-
-<tr>
-<td>4624 Type 10</td>
-<td>RDP Abuse</td>
-<td>T1021</td>
-<td class="yellow">Médio</td>
-<td>RDP remoto</td>
-<td>RDP exposto... patrimônio cultural brasileiro.</td>
-</tr>
-
-<tr>
-<td>4688 vssadmin</td>
-<td>Ransomware Prep</td>
-<td>T1490</td>
-<td class="red">Crítico</td>
-<td>Shadow Copy deletion</td>
-<td>Agora o backup vai conhecer Jesus.</td>
-</tr>
-
-</tbody>
-
-</table>
+<div class="node">
+<div class="node-id">7045</div>
+<div class="node-title">
+Persistência
+</div>
+<div class="node-desc">
+“WindowsSecurityHostTelemetryUpdate”.
+Claro.
+</div>
+</div>
 
 </div>
 
 </div>
 
-<!-- CONSOLE -->
+<div class="siem" id="siem">
 
-<div class="console">
-
-<div class="console-title">
-MINI SIEM — EVENT STREAM
+<div class="siem-title">
+MINI SIEM LIVE
 </div>
 
 <div class="log">
-[CRITICAL] EventID=4688 Host=SRV-FIN-01 User=svc_backup  
+[CRITICAL] EventID=4688 Host=FIN-SRV-01  
 powershell.exe -enc SQBFAFgA...
 </div>
 
 <div class="log">
 [CRITICAL] EventID=4769 DC=DC01  
-RC4 ticket request anomaly detected...
-Possible Kerberoasting.
+Possible Kerberoasting detected...
 </div>
 
 <div class="log">
@@ -909,16 +853,22 @@ WindowsTelemetrySecurityUpdateHost
 
 </div>
 
-</main>
+</div>
+
+</div>
 
 <div class="footer">
 
-EVENT ID HELL — INSANE SOC EDITION
+<div class="brand">
+BE SAFE
+</div>
+
+EVENT ID HELL — INSANE SOC BE SAFE EDITION
 
 <br><br>
 
-Porque monitorar logs Windows é basicamente assistir milhares de máquinas corporativas entrando lentamente em colapso...
-enquanto alguém diz:
+Porque monitorar Windows é basicamente assistir milhares de máquinas corporativas entrando lentamente em colapso...
+enquanto alguém fala:
 
 <br><br>
 
@@ -929,6 +879,10 @@ enquanto alguém diz:
 <br><br>
 
 ...até terem.
+
+<div class="credit">
+Mariana BS - Cybersecurity Engineer
+</div>
 
 </div>
 
@@ -959,6 +913,14 @@ card.style.display=(textMatch&&levelMatch)?'block':'none';
 
 search.addEventListener('input',filterCards);
 severity.addEventListener('change',filterCards);
+
+function scrollToSection(id){
+
+document.getElementById(id).scrollIntoView({
+behavior:'smooth'
+});
+
+}
 
 </script>
 
